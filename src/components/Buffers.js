@@ -6,22 +6,18 @@ var context = require('./Context').context;
 var OfflineContext = window.OfflineAudioContext || window.webkitOfflineAudioContext;
 
 var availableSamples = {
-  'hat': require('sounds/hat.wav'),
-  'mutedhat': require('sounds/mutedhat.wav'),
-  'openhat': require('sounds/openhat.wav'),
-  'snare': require('sounds/snare.wav'),
-  'kick': require('sounds/kick.wav'),
-  'mutedride': require('sounds/mutedride.wav'),
-  'ride': require('sounds/ride.wav'),
-  'ridebell': require('sounds/ridebell.wav'),
-  'mutedcrash': require('sounds/mutedcrash.wav'),
-  'crash': require('sounds/crash.wav'),
-  'tom1': require('sounds/tom1.wav'),
-  'tom2': require('sounds/tom2.wav'),
-  'tom3': require('sounds/tom3.wav'),
-  'metronome-low': require('sounds/metronome-low.wav'),
-  'metronome-med': require('sounds/metronome-med.wav'),
-  'metronome-high': require('sounds/metronome-high.wav')
+  'clap': require('sounds/clap.mp3'),
+  'cowbell': require('sounds/cowbell.mp3'),
+  'crash': require('sounds/crash.mp3'),
+  'hat': require('sounds/hat.mp3'),
+  'kick': require('sounds/kick.mp3'),
+  'metronome-up': require('sounds/metronome-up.mp3'),
+  'metronome': require('sounds/metronome.mp3'),
+  'snap': require('sounds/snap.mp3'),
+  'tom': require('sounds/tom.mp3'),
+  'tom2': require('sounds/tom2.mp3'),
+  'snare': require('sounds/snare.mp3'),
+  'triangle': require('sounds/triangle.mp3')
 };
 
 var buffers = {};
@@ -83,6 +79,8 @@ function decodeArrayBuffer (arrayBuffer, callback, errCallback) {
   context.decodeAudioData(arrayBuffer, callback, errCallback);
 }
 
+window.eh = decodeArrayBufferOffline;
+
 window.decodeArrayBuffer = decodeArrayBuffer;
 
 function loadSample (url, callback) {
@@ -92,7 +90,7 @@ function loadSample (url, callback) {
   request.responseType = 'arraybuffer';
 
   request.onload = function() {
-    decodeArrayBufferOffline(request.response, callback, function (buffer) {
+    decodeArrayBuffer(request.response, callback, function (buffer) {
       console.log('Error decoding drum samples!', buffer);
     });
   };

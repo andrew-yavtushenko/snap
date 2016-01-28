@@ -862,3 +862,28 @@ ul.BeatsList >li td:last-child {
   font-weight: normal;
   font-size: 12px;
 }
+
+.snap {
+  padding: 20px;
+}
+
+.snap li {
+  background-color: #eee;
+  margin: 0 10px 10px 0;
+  width: calc(20% - 10px);
+  height: 20%;
+  line-height: 100px;
+  text-align: center;
+  vertical-align: middle;
+  display: inline-block;
+  border-radius: 5px;
+  box-shadow: 0 0 8px 1px rgba(0,0,0,0.5), inset 0 0 2px 1px rgba(0,0,0,0.7);
+}
+
+.snap a {
+  width: 100%;
+  display: block;
+  height: 100%;
+  color: #333;
+  text-decoration: none;
+}
