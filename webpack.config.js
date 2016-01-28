@@ -1,48 +1,108 @@
+/*
+ * Webpack development server configuration
+ *
+ * This file is set up for serving the webpack-dev-server, which will watch for changes and recompile as required if
+ * the subfolder /webpack-dev-server/ is visited. Visiting the root will not automatically reload.
+ */
 'use strict';
-
+var webpack = require('webpack');
 var path = require('path');
-var args = require('minimist')(process.argv.slice(2));
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+var packageJSON = require('./package.json');
+var ENV = process.env.ENV;
+var mainEntry = ['./main.js'];
 
-// List of allowed environments
-var allowedEnvs = ['dev', 'dist', 'test'];
-
-// Set the correct environment
-var env;
-if(args._.length > 0 && args._.indexOf('start') !== -1) {
-  env = 'test';
-} else if (args.env) {
-  env = args.env;
-} else {
-  env = 'dev';
+if (ENV === 'development') {
+  mainEntry.unshift('webpack/hot/only-dev-server');
 }
-process.env.REACT_WEBPACK_ENV = env;
 
-// Get available configurations
-var configs = {
-  base: require(path.join(__dirname, 'cfg/base')),
-  dev: require(path.join(__dirname, 'cfg/dev')),
-  dist: require(path.join(__dirname, 'cfg/dist')),
-  test: require(path.join(__dirname, 'cfg/test'))
+module.exports = {
+
+  output: {
+    filename: 'main.js',
+    path: path.resolve(__dirname, 'dist')
+    // publicPath: '/'
+  },
+
+  devServer: {
+    contentBase: 'dist/',
+    port: 8000
+  },
+
+  entry: {
+    main: mainEntry,
+    vendor: Object.keys(
+        packageJSON.dependencies
+    ).filter(function (dep) { return dep !== 'lodash'; })
+  },
+
+  stats: {
+    colors: true,
+    reasons: true
+  },
+
+  context: path.resolve(__dirname, 'src'),
+  resolve: {
+    extensions: ['', '.js', '.jsx'],
+    alias: {
+      'actions': __dirname + '/src/actions',
+      'components': __dirname + '/src/components',
+      'containers': __dirname + '/src/containers',
+      'mixins': __dirname + '/src/mixins',
+      'reducers': __dirname + '/src/reducers',
+      'sounds': __dirname + '/src/sounds',
+      'styles': __dirname + '/src/styles'
+    }
+  },
+
+  module: {
+    preLoaders: [{
+      test: /\.(js|jsx)$/,
+      exclude: /node_modules/,
+      loader: 'eslint-loader'
+    }],
+    loaders: [{
+      test: /\.(js|jsx)$/,
+      loader: 'react-hot!babel-loader',
+      exclude: [
+        path.resolve(__dirname, 'node_modules'),
+        path.resolve(__dirname, 'src', 'worker')
+      ]
+    }, {
+      loader: 'file-loader?name=[path][name].[ext]',
+      include: [
+        path.resolve(__dirname, 'src', 'worker'),
+        path.resolve(__dirname, 'src', 'fonts'),
+        path.resolve(__dirname, 'src', 'sounds')
+      ]
+    }, {
+      test: /\.styl/,
+      loader: 'style-loader!css-loader!stylus-loader'
+    }, {
+      test: /\.css$/,
+      loader: 'style-loader!css-loader'
+    }, {
+      test: /\.(png|jpg|svg)$/,
+      loader: 'url-loader?limit=8192',
+      exclude: [
+        path.resolve(__dirname, 'src', 'fonts')
+      ]
+    }]
+  },
+
+  plugins: [
+    new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js'),
+    new webpack.DefinePlugin({
+      ENV: ENV,
+      VERSION: packageJSON.version
+    }),
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, 'src', 'index.html')
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'auth/success.html',
+      template: path.resolve(__dirname, 'src/auth', 'success.html')
+    })
+  ]
+
 };
-
-/**
- * Get an allowed environment
- * @param  {String}  env
- * @return {String}
- */
-function getValidEnv(env) {
-  var isValid = env && env.length > 0 && allowedEnvs.indexOf(env) !== -1;
-  return isValid ? env : 'dev';
-}
-
-/**
- * Build the webpack configuration
- * @param  {String} env Environment to use
- * @return {Object} Webpack config
- */
-function buildConfig(env) {
-  var usedEnv = getValidEnv(env);
-  return configs[usedEnv];
-}
-
-module.exports = buildConfig(env);

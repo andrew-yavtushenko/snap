@@ -1,0 +1,106 @@
+{
+  "patterns": [
+    {
+      "beats": [
+        {
+          "lines": [
+            {
+              "startTime": 0,
+              "lineStopTime": 2000,
+              "soundStopTime": 2000,
+              "notes": [
+                {
+                  "noteDuration": 500,
+                  "soundDuration": 408,
+                  "startTime": 0,
+                  "noteStopTime": 500,
+                  "soundStopTime": 500
+                }, {
+                  "noteDuration": 500,
+                  "soundDuration": 408,
+                  "startTime": 500,
+                  "noteStopTime": 1000,
+                  "soundStopTime": 1000
+                }, {
+                  "noteDuration": 500,
+                  "soundDuration": 408,
+                  "startTime": 1000,
+                  "noteStopTime": 1500,
+                  "soundStopTime": 1500
+                } {
+                  "noteDuration": 500,
+                  "soundDuration": 408,
+                  "startTime": 1500,
+                  "noteStopTime": 2000,
+                  "soundStopTime": 2000
+                }
+              ]
+            }, {
+              "startTime": 0,
+              "lineStopTime": 2000,
+              "soundStopTime": 2117,
+              "notes": [
+                {
+                  "noteDuration": 500,
+                  "soundDuration": 617,
+                  "startTime": 0,
+                  "noteStopTime": 500,
+                  "soundStopTime": 617
+                }, {
+                  "noteDuration": 500,
+                  "soundDuration": 617,
+                  "startTime": 500,
+                  "noteStopTime": 1000,
+                  "soundStopTime": 1117
+                }, {
+                  "noteDuration": 500,
+                  "soundDuration": 617,
+                  "startTime": 1000,
+                  "noteStopTime": 1500,
+                  "soundStopTime": 1617
+                } {
+                  "noteDuration": 500,
+                  "soundDuration": 617,
+                  "startTime": 1500,
+                  "noteStopTime": 2000,
+                  "soundStopTime": 2117
+                }
+              ]
+            }, {
+              "startTime": 0,
+              "lineStopTime": 2000,
+              "soundStopTime": 3318,
+              "notes": [
+                {
+                  "noteDuration": 500,
+                  "soundDuration": 1318,
+                  "startTime": 0,
+                  "noteStopTime": 500,
+                  "soundStopTime": 1818
+                }, {
+                  "noteDuration": 500,
+                  "soundDuration": 1318,
+                  "startTime": 500,
+                  "noteStopTime": 1000,
+                  "soundStopTime": 2318
+                }, {
+                  "noteDuration": 500,
+                  "soundDuration": 1318,
+                  "startTime": 1000,
+                  "noteStopTime": 1500,
+                  "soundStopTime": 2818
+                } {
+                  "noteDuration": 500,
+                  "soundDuration": 1318,
+                  "startTime": 1500,
+                  "noteStopTime": 2000,
+                  "soundStopTime": 3318
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,7 +1,8 @@
 {
   "generator-react-webpack": {
-    "appName": "snap",
-    "style": "css",
-    "postcss": false
+    "app-name": "sequencerReact",
+    "architecture": "flux",
+    "styles-language": "stylus",
+    "component-suffix": "js"
   }
 }
