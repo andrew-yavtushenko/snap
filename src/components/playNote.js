@@ -2,7 +2,6 @@
 
 var Context = require('./Context').context;
 var Buffers = require('./Buffers');
-var blink = require('./Blink');
 
 function play (buffer, gain, duration, mute) {
   var noteDuration = duration / 1000;
@@ -27,10 +26,8 @@ function play (buffer, gain, duration, mute) {
   }
 }
 
-window.play = play;
 
-module.exports = function playNote (bufferId, gain, patternId, beatId, lineId, noteId, duration) {
-  blink(patternId, beatId, lineId, noteId, duration);
+module.exports = function playNote (bufferId, gain, duration) {
 
   var buffer;
   var mute = bufferId.match(/muted/gi);
