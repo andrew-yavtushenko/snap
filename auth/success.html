@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Receiving authentication</title>
+</head>
+<body>
+<p>Finishing authentication...</p>
+<script>
+  debugger;
+  // hack. IE9 has empty event.data
+  try {
+    // parent have original domain
+    window.opener.document.domain;
+  }
+  catch(e) {
+    // parent have changed domain, we have to do it too
+    document.domain = document.domain.split('.').slice(-2).join('.');
+  }
+
+  try {
+    window.opener.postMessage(document.location.search, "*");
+    window.opener.connectService(document.location.search); // hack. IE9, 10 do not support postMessages fully
+  }
+  catch(e){}
+  window.close();
+</script>
+</body>
+</html>
