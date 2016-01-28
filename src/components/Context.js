@@ -22,6 +22,6 @@ module.exports = {
   context: context,
   unlock: unlock,
   isUnlocked: function () {
-    return unlocked
+    return unlocked;
   }
 };
