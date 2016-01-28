@@ -26,7 +26,6 @@ function play (buffer, gain, duration, mute) {
   }
 }
 
-
 module.exports = function playNote (bufferId, gain, duration) {
 
   var buffer;
