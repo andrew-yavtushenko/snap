@@ -59,14 +59,14 @@ html, body {
 
 /* main */
 .App {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  min-height: 100%;
-  height: auto !important; /* This line and the next line are not necessary unless you need IE6 support */
-  height: 100%;
-  color: #000;
-  align-content: space-around;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    color: #000;
+    align-content: space-around;
 }
 
 .CurrentTrack {
@@ -864,26 +864,29 @@ ul.BeatsList >li td:last-child {
 }
 
 .snap {
-  padding: 20px;
+    padding: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    flex-wrap: wrap;
+    margin: 0;
 }
 
 .snap li {
-  background-color: #eee;
-  margin: 0 10px 10px 0;
-  width: calc(20% - 10px);
-  height: 20%;
-  line-height: 100px;
-  text-align: center;
-  vertical-align: middle;
-  display: inline-block;
-  border-radius: 5px;
-  box-shadow: 0 0 8px 1px rgba(0,0,0,0.5), inset 0 0 2px 1px rgba(0,0,0,0.7);
+    background-color: #eee;
+    margin: 10px;
+    width: calc(50% - 20px);
+    height: calc(20% - 20px);
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 5px;
+    box-shadow: 0 0 8px 1px rgba(0, 0, 0, .5), inset 0 0 2px 1px rgba(0, 0, 0, .7);
+    align-items: center;
+    display: flex;
+    justify-content: space-around;
 }
 
 .snap a {
-  width: 100%;
-  display: block;
-  height: 100%;
-  color: #333;
   text-decoration: none;
 }
