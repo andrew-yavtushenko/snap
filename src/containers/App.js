@@ -46,11 +46,7 @@ module.exports = React.createClass({
   },
   renderSnap: function (name) {
     return (
-      <li>
-        <a href='#'
-           onClick={this.handleSnap.bind(this, name)}
-           >{name}</a>
-      </li>
+      <li onClick={this.handleSnap.bind(this, name)}>{name}</li>
     );
   },
   renderList: function () {
