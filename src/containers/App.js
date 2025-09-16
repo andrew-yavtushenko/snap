@@ -49,7 +49,7 @@ module.exports = React.createClass({
       <li>
         <a href='#'
            onClick={this.handleSnap.bind(this, name)}
-           onTouchStart={this.handleSnap.bind(this, name)}>{name}</a>
+           >{name}</a>
       </li>
     );
   },
