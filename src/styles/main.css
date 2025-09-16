@@ -888,5 +888,6 @@ ul.BeatsList >li td:last-child {
 }
 
 .snap a {
+  color: #000;
   text-decoration: none;
 }

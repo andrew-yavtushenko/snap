@@ -97,11 +97,13 @@ module.exports = {
       VERSION: packageJSON.version
     }),
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, 'src', 'index.html')
+      template: path.resolve(__dirname, 'src', 'index.html'),
+      filename: 'index.html'
     }),
     new HtmlWebpackPlugin({
       filename: 'auth/success.html',
-      template: path.resolve(__dirname, 'src/auth', 'success.html')
+      template: path.resolve(__dirname, 'src/auth', 'success.html'),
+      filename: 'success.html'
     })
   ]
 
