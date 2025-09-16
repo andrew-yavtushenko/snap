@@ -1,9 +1,9 @@
 'use strict';
 
 var React = require('react/addons');
-var Context = require('components/Context');
-var Buffers = require('components/Buffers');
-var playNote = require('components/playNote');
+var Context = require('../components/Context');
+var Buffers = require('../components/Buffers');
+var playNote = require('../components/playNote');
 
 
 require('normalize.css');
