@@ -99,8 +99,12 @@ function loadSample (url, callback) {
 }
 
 function compileBuffers (receivedBuffers) {
-  Object.keys(availableSamples).reduce(function(result, sampleName){
-    result[sampleName] = receivedBuffers[sampleName];
+  reduce(availableSamples, function(result, sampleUrl, sampleName){
+    if (sampleName.match(/metronome-/gi)) {
+      result.metronome = 'metronome';
+    } else {
+      result[sampleName] = receivedBuffers[sampleName];
+    }
     return result;
   }, loadedBuffers);
 }
@@ -118,11 +122,24 @@ function loadBuffers (callback) {
   });
 }
 
-function getBuffers (bufferName) {
+function getBuffers (bufferName, volume) {
   if (!bufferName) {
     return loadedBuffers;
   }
-  return loadedBuffers[bufferName];
+  if (bufferName === 'metronome') {
+    switch (volume) {
+      case 0.33:
+        return buffers['metronome-low'];
+      case 0.66:
+        return buffers['metronome-med'];
+      case 1:
+        return buffers['metronome-high'];
+      default:
+        return buffers['metronome-low'];
+    }
+  } else {
+    return loadedBuffers[bufferName];
+  }
 }
 
 window.getRaw = function () { return buffers; };

@@ -45,9 +45,16 @@ module.exports = React.createClass({
     playNote(name, 1, 'null', 'null', 'null', 'null', buffer.duration);
   },
   renderSnap: function (name) {
+    if (this.isMobile()) {
+      return (<li onTouchStart={this.handleSnap.bind(this, name)}>{name}</li>);
+    }
     return (
-      <li onClick={this.handleSnap.bind(this, name)}>{name}</li>
+      <li onMouseDown={this.handleSnap.bind(this, name)}>{name}</li>
     );
+  },
+  isMobile: function () {
+    var agentDetails = navigator.userAgent;
+    return /Android|Mobi|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(agentDetails);
   },
   renderList: function () {
     return (
